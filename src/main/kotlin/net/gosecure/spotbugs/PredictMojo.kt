@@ -17,6 +17,7 @@ class PredictMojo : AbstractMojo() {
     private val FILE_OUTPUT = "aggregate-results_classified_sample.arff"
     private val FILE_INPUT_TEST = "aggregate-results_classified_sample_unlabeled.csv"
     private val FILE_OUTPUT_TEST = "aggregate-results_classified_sample_unlabeled.arff"
+    private val FILE_RESULTS = "aggregate-results_classified_sample_labeled.csv"
     private val MODEL_SAVED = "test-saved-model.model"
 
     override fun execute() {
@@ -35,6 +36,6 @@ class PredictMojo : AbstractMojo() {
 
         dataUnlabeled.setClassIndex(dataUnlabeled.numAttributes() - 1)
 
-        MLUtils().makePredictions(project, cfg, dataUnfiltered, dataUnlabeled, model)
+        MLUtils().makePredictions(project, cfg, dataUnfiltered, dataUnlabeled, model, FILE_INPUT_TEST, FILE_RESULTS)
     }
 }
